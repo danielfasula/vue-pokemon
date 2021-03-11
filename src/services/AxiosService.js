@@ -6,10 +6,20 @@ export const api = Axios.create({
   timeout: 8000
 })
 
-export const setBearer = function(bearer) {
+export const pokeApi = Axios.create({
+  baseURL: 'https://pokeapi.co/api/v2/',
+  timeout: 3000
+})
+
+export const sandboxApi = Axios.create({
+  baseURL: 'https://bcw-sandbox.herokuapp.com/api/danielf/pokemon',
+  timeout: 3000
+})
+
+export const setBearer = function (bearer) {
   api.defaults.headers.authorization = bearer
 }
 
-export const resetBearer = function() {
+export const resetBearer = function () {
   api.defaults.headers.authorization = ''
 }

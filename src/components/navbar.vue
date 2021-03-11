@@ -4,9 +4,13 @@
       <div class="d-flex flex-column align-items-center">
         <img
           alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
+          src="../assets/img/pokeball.png"
+          height="50"
+          width="50"
         />
+      </div>
+      <div>
+        <h3 class="logo mt-2 ml-2">GOTTA CATCH EM ALL!</h3>
       </div>
     </router-link>
     <button
@@ -32,56 +36,19 @@
             About
           </router-link>
         </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'WildPokemonPage' }" class="nav-link">
+            Wild
+          </router-link>
+        </li>
       </ul>
-      <span class="navbar-text">
-        <button
-          class="btn btn-outline-primary text-uppercase"
-          @click="login"
-          v-if="!user.isAuthenticated"
-        >
-          Login
-        </button>
-
-        <div class="dropdown" v-else>
-          <div
-            class="dropdown-toggle"
-            @click="state.dropOpen = !state.dropOpen"
-          >
-            <img
-              :src="user.picture"
-              alt="user photo"
-              height="40"
-              class="rounded"
-            />
-            <span class="mx-3">{{ user.name }}</span>
-          </div>
-          <div
-            class="dropdown-menu p-0 list-group w-100"
-            :class="{ show: state.dropOpen }"
-            @click="state.dropOpen = false"
-          >
-            <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item list-group-item-action hoverable">
-                Account
-              </div>
-            </router-link>
-            <div
-              class="list-group-item list-group-item-action hoverable"
-              @click="logout"
-            >
-              logout
-            </div>
-          </div>
-        </div>
-      </span>
     </div>
   </nav>
 </template>
 
 <script>
-import { AuthService } from '../services/AuthService'
-import { AppState } from '../AppState'
-import { computed, reactive } from 'vue'
+// import { AppState } from '../AppState'
+import { reactive } from 'vue'
 export default {
   name: 'Navbar',
   setup() {
@@ -89,14 +56,7 @@ export default {
       dropOpen: false
     })
     return {
-      state,
-      user: computed(() => AppState.user),
-      async login() {
-        AuthService.loginWithPopup()
-      },
-      async logout() {
-        await AuthService.logout({ returnTo: window.location.origin })
-      }
+      state
     }
   }
 }
@@ -118,10 +78,16 @@ export default {
 a:hover {
   text-decoration: none;
 }
-.nav-link{
+.nav-link {
   text-transform: uppercase;
 }
-.nav-item .nav-link.router-link-exact-active{
+.nav-item .nav-link.router-link-exact-active {
   color: var(--primary);
+}
+.logo {
+  color: #ffcc01;
+  -webkit-text-fill-color: #ffcc01;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #385ba9;
 }
 </style>

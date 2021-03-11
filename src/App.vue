@@ -3,7 +3,7 @@
     <Navbar />
   </header>
   <main>
-    <router-view v-slot="{Component}">
+    <router-view v-slot="{ Component }">
       <transition name="route" mode="out-in">
         <component :is="Component" />
       </transition>
@@ -19,6 +19,7 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
+
 export default {
   name: 'App',
   setup() {
@@ -30,5 +31,4 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
-
 </style>
